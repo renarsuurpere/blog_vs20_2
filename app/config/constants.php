@@ -10,4 +10,4 @@ define('URLROOT', 'http://'.$_SERVER['HTTP_HOST'].'/'.PROJECT_NAME);
 define('DB_HOST', 'localhost');
 define('DB_USER', 'root');
 define('DB_PASS', '');
-define('DB_NAME', 'blog_vs_20');
+define('DB_NAME', 'blog_vs20_2');
