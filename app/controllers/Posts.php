@@ -10,6 +10,7 @@ class Posts extends Controller
     public function __construct()
     {
         $this->postModel = $this->model('Post');
+        $this->tagsModel = $this->model('Tag');
     }
 
     public function index()
@@ -22,8 +23,10 @@ class Posts extends Controller
     public function show($id)
     {
         $post = $this->postModel->getPostById($id);
+        $tags = $this->tagsModel->getPostTags($id);
         $data = array(
-            'post' => $post
+            'post' => $post,
+            'tags' => $tags
         );
         $this->view('posts/show', $data);
     }
