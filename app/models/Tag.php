@@ -29,4 +29,17 @@ class Tag
         $result = $this->db->getAll();
         return $result;
     }
+
+    public function getTagPosts($id)
+    {
+        $this->db->query('
+        SELECT * FROM posts 
+        INNER JOIN post_tags 
+        ON post_tags.post_id=posts.id 
+        WHERE post_tags.tag_id=:id
+        ');
+        $this->db->bind(':id', $id);
+        $result = $this->db->getAll();
+        return $result;
+    }
 }

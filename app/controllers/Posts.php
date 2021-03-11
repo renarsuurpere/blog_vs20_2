@@ -16,7 +16,7 @@ class Posts extends Controller
     public function index()
     {
         $posts = $this->postModel->getPosts();
-        $data = array('posts' => $posts);
+        $data = array('posts' => $posts, 'tags' => $tags);
         $this->view('/posts/index', $data);
     }
 

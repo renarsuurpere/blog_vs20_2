@@ -1,27 +1,15 @@
 <?php require_once APPROOT . '/views/inc/header.php'; ?>
-    <h1><?php echo $data['post']->title ?></h1>
-    <div class="bg-secondary text-white p-2 mb-3">
-        Created by <?php echo $data['post']->user_id; ?> at <?php echo $data['post']->created_at; ?>
+<?php
+echo '<pre>';
+print_r($data);
+echo '</pre>';
+?>
+<?php foreach ($data['posts'] as $post): ?>
+    <div class="card card-body mb-3">
+        <h3 class="card-title"><?php echo $post->title; ?></h3>
+        <div class="bg-light p-2 mb-3">Created by <?php echo $post->name; ?> at <?php echo $post->postCreated; ?></div>
+        <p class="card-text"><?php echo $post->content; ?></p>
+        <a href="<?php echo URLROOT ?>/posts/show/<?php echo $post->postId; ?>" class="btn btn-info">More</a>
     </div>
-    <div class="bg-white p-2 mb-3">
-        <?php foreach ($data['tags'] as $tag): ?>
-            <a href="<?php echo URLROOT ?>/tags/show/<?php echo $tag->id; ?>" class=""><span
-                        class="badge badge-info"><?php echo $tag->name; ?></span></a>
-        <?php endforeach ?>
-    </div>
-    <p><?php echo $data['post']->content; ?></p>
-    <a href="<?php echo URLROOT ?>/posts" class="btn btn-info">Back</a>
-    <hr>
-<?php if ($data['post']->user_id == $_SESSION['user_id']): ?>
-    <div class="row justify-content-around">
-        <div class="col-8">
-            <a href="<?php echo URLROOT ?>/posts/edit/<?php echo $data['post']->id; ?>" class="btn btn-success">Edit</a>
-        </div>
-        <div class="col-4">
-            <form action="<?php echo URLROOT ?>/posts/delete/<?php echo $data['post']->id; ?>" method="post">
-                <input type="submit" value="Delete" class="btn btn-danger">
-            </form>
-        </div>
-    </div>
-<?php endif; ?>
+<?php endforeach; ?>
 <?php require_once APPROOT . '/views/inc/footer.php'; ?>
